@@ -7,7 +7,7 @@ const CONTACT_LINKS = [
   { label: "Email", href: "mailto:japhbkk@gmail.com" },
   { label: "Instagram", href: "https://www.instagram.com/livlitwithjaan/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/janyaph/" },
-  { label: "Resume", href: "/Janya-Resume.docx" },
+  { label: "Resume", href: "/Janya-Resume.pdf" },
 ];
 
 function PressCard({ press }: { press: Press }) {
