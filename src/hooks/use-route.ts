@@ -18,6 +18,15 @@ export function useRoute() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  // Safari reuses whatever icon it remembers for each URL on pushState navigation,
+  // so re-insert the favicon link on every route change to keep it consistent.
+  useEffect(() => {
+    document.querySelectorAll('link[rel="icon"]').forEach((link) => {
+      const fresh = link.cloneNode() as HTMLLinkElement;
+      link.replaceWith(fresh);
+    });
+  }, [path]);
+
   const segments = path.split("/").filter(Boolean);
   return { path, segments, navigate };
 }
