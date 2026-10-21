@@ -19,10 +19,13 @@ export function useRoute() {
   }, []);
 
   // Safari reuses whatever icon it remembers for each URL on pushState navigation,
-  // so re-insert the favicon link on every route change to keep it consistent.
+  // so point the favicon links at a per-route URL to force a fresh load every time.
   useEffect(() => {
-    document.querySelectorAll('link[rel="icon"]').forEach((link) => {
+    document.querySelectorAll<HTMLLinkElement>('link[rel="icon"]').forEach((link) => {
+      const url = new URL(link.href);
+      url.searchParams.set("p", path);
       const fresh = link.cloneNode() as HTMLLinkElement;
+      fresh.href = url.toString();
       link.replaceWith(fresh);
     });
   }, [path]);
